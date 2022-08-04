@@ -1,55 +1,128 @@
 <template>
-  <div class="vqb-rule" :class="{ 'panel panel-default form-inline': styled }">
+  <div
+    class="vqb-rule"
+    :class="{ 'panel panel-default form-inline': styled }"
+  >
     <div :class="{ 'form-group': styled }">
       <label>{{ rule.label }}</label>
 
-      <select v-if="typeof rule.operands !== 'undefined'" v-model="query.selectedOperand" :class="{ 'form-control': styled }">
-        <option v-for="operand in rule.operands">{{ operand }}</option>
+      <select
+        v-if="typeof rule.operands !== 'undefined'"
+        v-model="query.selectedOperand"
+        :class="{ 'form-control': styled }"
+      >
+        <option
+          v-for="(operand, operand_index) in rule.operands"
+          :key="operand_index"
+        >
+          {{ operand }}
+        </option>
       </select>
 
-      <select v-if="! isMultipleChoice" v-model="query.selectedOperator" :class="{ 'form-control': styled }">
-        <option v-for="operator in rule.operators" v-bind:value="operator">
+      <select
+        v-if="! isMultipleChoice"
+        v-model="query.selectedOperator"
+        :class="{ 'form-control': styled }"
+      >
+        <option
+          v-for="(operator, operator_index) in rule.operators"
+          :key="operator_index"
+          :value="operator"
+        >
           {{ operator }}
         </option>
       </select>
 
-      <input :class="{ 'form-control': styled }" v-if="rule.inputType === 'text'" type="text" v-model="query.value" :placeholder="labels.textInputPlaceholder">
-      <input :class="{ 'form-control': styled }" v-if="rule.inputType === 'number'" type="number" v-model="query.value">
+      <input
+        v-if="rule.inputType === 'text'"
+        v-model="query.value"
+        :class="{ 'form-control': styled }"
+        type="text"
+        :placeholder="labels.textInputPlaceholder"
+      >
+      <input
+        v-if="rule.inputType === 'number'"
+        v-model="query.value"
+        :class="{ 'form-control': styled }"
+        type="number"
+      >
 
       <template v-if="isCustomComponent">
-        <component :value="query.value" @input="updateQuery" :is="rule.component"></component>
+        <component
+          :is="rule.component"
+          :value="query.value"
+          @input="updateQuery"
+        />
       </template>
 
-      <div class="checkbox" v-if="rule.inputType === 'checkbox'">
-        <label v-for="choice in rule.choices">
-          <input type="checkbox" :value="choice.value" v-model="query.value"> {{ choice.label }}
+      <div
+        v-if="rule.inputType === 'checkbox'"
+        class="checkbox"
+      >
+        <label
+          v-for="(choice, choice_index) in rule.choices"
+          :key="choice_index"
+        >
+          <input
+            v-model="query.value"
+            type="checkbox"
+            :value="choice.value"
+          > {{ choice.label }}
         </label>
       </div>
 
-      <div class="radio" v-if="rule.inputType === 'radio'">
-        <label v-for="choice in rule.choices">
-          <input type="radio" :value="choice.value" v-model="query.value"> {{ choice.label }}
+      <div
+        v-if="rule.inputType === 'radio'"
+        class="radio"
+      >
+        <label
+          v-for="(choice, choice_index2) in rule.choices"
+          :key="choice_index2"
+        >
+          <input
+            v-model="query.value"
+            type="radio"
+            :value="choice.value"
+          > {{ choice.label }}
         </label>
       </div>
 
       <select
         v-if="rule.inputType === 'select'"
+        v-model="query.value"
         :class="{ 'form-control': styled }"
         :multiple="rule.type === 'multi-select'"
-        v-model="query.value">
-
+      >
         <template v-for="(option, option_key) in selectOptions">
-          <option v-if="!Array.isArray(option)" :value="option.value">
+          <option
+            v-if="!Array.isArray(option)"
+            :key="option_key"
+            :value="option.value"
+          >
             {{ option.label }}
           </option>
-          <optgroup v-if="Array.isArray(option)" :label="option_key">
-            <option v-for="sub_option in option" :value="sub_option.value">{{ sub_option.label }}</option>
+          <optgroup
+            v-if="Array.isArray(option)"
+            :key="option_key"
+            :label="option_key"
+          >
+            <option
+              v-for="(sub_option, sub_option_index) in option"
+              :key="sub_option_index"
+              :value="sub_option.value"
+            >
+              {{ sub_option.label }}
+            </option>
           </optgroup>
         </template>
-
       </select>
 
-      <button type="button" :class="{ 'close pull-right': styled }" @click="remove" v-html="labels.removeRule"></button>
+      <button
+        type="button"
+        :class="{ 'close pull-right': styled }"
+        @click="remove"
+        v-html="labels.removeRule"
+      />
     </div>
   </div>
 </template>
@@ -58,26 +131,11 @@
 import deepClone from '../utilities.js';
 
 export default {
-  name: "query-builder-rule",
+  name: "QueryBuilderRule",
 
   props: ['query', 'index', 'rule', 'styled', 'labels'],
 
-  beforeMount () {
-    if (this.rule.type === 'custom-component') {
-      this.$options.components[this.id] = this.rule.component;
-    }
-  },
-
-  methods: {
-    remove: function() {
-      this.$emit('child-deletion-requested', this.index);
-    },
-    updateQuery(value) {
-      let updated_query = deepClone(this.query);
-      updated_query.value = value;
-      this.$emit('update:query', updated_query);
-    },
-  },
+  emits: ['update:query', 'child-deletion-requested'],
 
   computed: {
     isMultipleChoice () {
@@ -107,6 +165,12 @@ export default {
     },
   },
 
+  beforeMount () {
+    if (this.rule.type === 'custom-component') {
+      this.$options.components[this.id] = this.rule.component;
+    }
+  },
+
   mounted () {
     let updated_query = deepClone(this.query);
 
@@ -124,6 +188,17 @@ export default {
 
       this.$emit('update:query', updated_query);
     }
+  },
+
+  methods: {
+    remove: function() {
+      this.$emit('child-deletion-requested', this.index);
+    },
+    updateQuery(value) {
+      let updated_query = deepClone(this.query);
+      updated_query.value = value;
+      this.$emit('update:query', updated_query);
+    },
   }
 }
 </script>

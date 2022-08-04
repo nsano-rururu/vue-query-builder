@@ -45,20 +45,22 @@ new Vue({
 
   components: { VueQueryBuilder },
 
-  data: {
+  data: function() {
+return {
     rules: rules,
     output: {},
+  };
+},
+
+  computed: {
+    outputFormatted: function() {
+      return JSON.stringify(this.output, null, 2);
+    }
   },
 
   methods: {
     updateQuery: function(value){
       this.output = value;
-    }
-  },
-
-  computed: {
-    outputFormatted: function() {
-      return JSON.stringify(this.output, null, 2);
     }
   },
 });

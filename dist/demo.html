@@ -1,16 +1,21 @@
+<meta charset="utf-8">
 <title>VueQueryBuilder demo</title>
-<script src="https://unpkg.com/vue"></script>
+<script src="//unpkg.com/vue@3"></script>
 <script src="./VueQueryBuilder.umd.js"></script>
+
 <link rel="stylesheet" href="./VueQueryBuilder.css">
+
 
 <div id="app">
   <demo></demo>
 </div>
 
 <script>
-new Vue({
+
+Vue.createApp({
   components: {
     demo: VueQueryBuilder
   }
-}).$mount('#app')
+}).mount('#app')
+
 </script>

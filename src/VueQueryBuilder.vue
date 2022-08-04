@@ -1,16 +1,19 @@
 <template>
-  <div class="vue-query-builder" :class="{ 'vue-query-builder-styled': styled }">
+  <div
+    class="vue-query-builder"
+    :class="{ 'vue-query-builder-styled': styled }"
+  >
     <query-builder-group
+      v-model:query="query"
       :index="0"
-      :query.sync="query"
-      :ruleTypes="ruleTypes"
+      :rule-types="ruleTypes"
       :rules="mergedRules"
-      :maxDepth="maxDepth"
+      :max-depth="maxDepth"
       :depth="depth"
       :styled="styled"
       :labels="mergedLabels"
       type="query-builder-group"
-      ></query-builder-group>
+    />
   </div>
 </template>
 
@@ -30,7 +33,7 @@ var defaultLabels = {
 };
 
 export default {
-  name: 'vue-query-builder',
+  name: 'VueQueryBuilder',
 
   components: {
     QueryBuilderGroup
@@ -57,6 +60,8 @@ export default {
     },
     value: Object
   },
+
+  emits: ['input'],
 
   data () {
     return {

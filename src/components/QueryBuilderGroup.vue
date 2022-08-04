@@ -1,48 +1,92 @@
 <template>
-  <div class="vqb-group" :class="classObject">
-    <div class="vqb-group-heading" :class="{ 'panel-heading': styled }">
-      <div class="match-type-container" :class="{ 'form-inline': styled }">
+  <div
+    class="vqb-group"
+    :class="classObject"
+  >
+    <div
+      class="vqb-group-heading"
+      :class="{ 'panel-heading': styled }"
+    >
+      <div
+        class="match-type-container"
+        :class="{ 'form-inline': styled }"
+      >
         <div :class="{ 'form-group': styled }">
           <label for="vqb-match-type">{{ labels.matchType }}</label>
-          <select id="vqb-match-type" :class="{ 'form-control': styled }" v-model="query.logicalOperator">
+          <select
+            id="vqb-match-type"
+            v-model="query.logicalOperator"
+            :class="{ 'form-control': styled }"
+          >
             <option>{{ labels.matchTypeAll }}</option>
             <option>{{ labels.matchTypeAny }}</option>
           </select>
         </div>
-        <button type="button" :class="{ 'close pull-right': styled }" v-if="this.depth > 1" @click="remove" v-html="labels.removeGroup"></button>
+        <button
+          v-if="depth > 1"
+          type="button"
+          :class="{ 'close pull-right': styled }"
+          @click="remove"
+          v-html="labels.removeGroup"
+        />
       </div>
     </div>
 
-    <div class="vqb-group-body" :class="{ 'panel-body': styled }">
-      <div class="rule-actions" :class="{ 'form-inline': styled }">
+    <div
+      class="vqb-group-body"
+      :class="{ 'panel-body': styled }"
+    >
+      <div
+        class="rule-actions"
+        :class="{ 'form-inline': styled }"
+      >
         <div :class="{ 'form-group': styled }">
-
-          <select v-model="selectedRule" :class="{ 'form-control': styled }">
-            <option v-for="(rule, index) in rules" :key="index" :value="rule">{{ rule.label }}</option>
+          <select
+            v-model="selectedRule"
+            :class="{ 'form-control': styled }"
+          >
+            <option
+              v-for="(rule, index) in rules"
+              :key="index"
+              :value="rule"
+            >
+              {{ rule.label }}
+            </option>
           </select>
 
-          <button type="button" @click="addRule" :class="{ 'btn btn-default': styled }" v-html="labels.addRule"></button>
-          <button type="button" :class="{ 'btn btn-default': styled }" v-if="this.depth < this.maxDepth" @click="addGroup" v-html="labels.addGroup"></button>
+          <button
+            type="button"
+            :class="{ 'btn btn-default': styled }"
+            @click="addRule"
+            v-html="labels.addRule"
+          />
+          <button
+            v-if="depth < maxDepth"
+            type="button"
+            :class="{ 'btn btn-default': styled }"
+            @click="addGroup"
+            v-html="labels.addGroup"
+          />
         </div>
       </div>
 
       <div class="children">
         <component
+          :is="child.type"
           v-for="(child, index) in query.children"
           :key="index"
-          :is="child.type"
+          v-model:query="child.query"
           :type="child.type"
-          :query.sync="child.query"
-          :ruleTypes="ruleTypes"
+          :rule-types="ruleTypes"
           :rules="rules"
           :rule="ruleById(child.query.rule)"
           :index="index"
-          :maxDepth="maxDepth"
+          :max-depth="maxDepth"
           :depth="depth + 1"
           :styled="styled"
           :labels="labels"
-          v-on:child-deletion-requested="removeChild">
-        </component>
+          @child-deletion-requested="removeChild"
+        />
       </div>
     </div>
   </div>
@@ -53,13 +97,33 @@ import QueryBuilderRule from './QueryBuilderRule.vue';
 import deepClone from '../utilities.js';
 
 export default {
-  name: "query-builder-group",
+  name: "QueryBuilderGroup",
 
   components: {
     QueryBuilderRule
   },
 
   props: ['ruleTypes', 'type', 'query', 'rules', 'index', 'maxDepth', 'depth', 'styled', 'labels'],
+
+  emits: ['update:query', 'child-deletion-requested'],
+  
+  data () {
+    return {
+      selectedRule: this.rules[0]
+    }
+  },
+
+  computed: {
+    classObject () {
+      var classObject = {
+        'panel panel-default': this.styled,
+      }
+
+      classObject['depth-' + this.depth.toString()] = this.styled;
+
+      return classObject;
+    }
+  },
 
   methods: {
     ruleById (ruleId) {
@@ -116,24 +180,6 @@ export default {
       let updated_query = deepClone(this.query);
       updated_query.children.splice(index, 1);
       this.$emit('update:query', updated_query);
-    }
-  },
-
-  data () {
-    return {
-      selectedRule: this.rules[0]
-    }
-  },
-
-  computed: {
-    classObject () {
-      var classObject = {
-        'panel panel-default': this.styled,
-      }
-
-      classObject['depth-' + this.depth.toString()] = this.styled;
-
-      return classObject;
     }
   }
 }
