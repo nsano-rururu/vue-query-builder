@@ -46,8 +46,8 @@
             :class="{ 'form-control': styled }"
           >
             <option
-              v-for="(rule, index) in rules"
-              :key="index"
+              v-for="(rule, option_index) in rules"
+              :key="option_index"
               :value="rule"
             >
               {{ rule.label }}
@@ -73,8 +73,8 @@
       <div class="children">
         <component
           :is="child.type"
-          v-for="(child, index) in query.children"
-          :key="index"
+          v-for="(child, child_index) in query.children"
+          :key="child_index"
           v-model:query="child.query"
           :type="child.type"
           :rule-types="ruleTypes"
@@ -93,11 +93,12 @@
 </template>
 
 <script>
+import { defineComponent } from "vue";
 import QueryBuilderRule from './QueryBuilderRule.vue';
 import deepClone from '../utilities.js';
 
-export default {
-  name: "QueryBuilderGroup",
+export default defineComponent({
+  name: "query-builder-group",
 
   components: {
     QueryBuilderRule
@@ -182,5 +183,5 @@ export default {
       this.$emit('update:query', updated_query);
     }
   }
-}
+});
 </script>

@@ -128,10 +128,11 @@
 </template>
 
 <script>
+import { defineComponent } from "vue";
 import deepClone from '../utilities.js';
 
-export default {
-  name: "QueryBuilderRule",
+export default defineComponent({
+  name: "query-builder-rule",
 
   props: ['query', 'index', 'rule', 'styled', 'labels'],
 
@@ -200,5 +201,5 @@ export default {
       this.$emit('update:query', updated_query);
     },
   }
-}
+});
 </script>

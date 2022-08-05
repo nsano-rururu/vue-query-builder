@@ -40,17 +40,17 @@ let rules = [
     },
   ];
 
-new Vue({
+const app = Vue.createApp({
   el: '#app',
 
   components: { VueQueryBuilder },
 
   data: function() {
-return {
-    rules: rules,
-    output: {},
-  };
-},
+    return {
+        rules: rules,
+        output: {},
+      };
+  },
 
   computed: {
     outputFormatted: function() {
@@ -64,3 +64,5 @@ return {
     }
   },
 });
+app.config.compilerOptions.whitespace = 'preserve';
+app.mount('#app');
