@@ -33,7 +33,7 @@ var defaultLabels = {
   textInputPlaceholder: "value",
 };
 
-export default defineComponent({
+export default {
   name: 'vue-query-builder',
 
   components: {
@@ -149,7 +149,7 @@ export default defineComponent({
       this.query = Object.assign(this.query, this.$options.propsData.value);
     }
   }
-});
+};
 </script>
 
 <style>

@@ -1,7 +1,5 @@
-import Vue from 'vue'
+import * as Vue from 'vue';
 import VueQueryBuilder from './VueQueryBuilder.vue'
-
-Vue.config.productionTip = false
 
 let rules = [
     {

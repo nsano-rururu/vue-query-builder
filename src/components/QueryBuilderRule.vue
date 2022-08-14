@@ -93,17 +93,20 @@
         :class="{ 'form-control': styled }"
         :multiple="rule.type === 'multi-select'"
       >
-        <template v-for="(option, option_key) in selectOptions">
+        <template
+          v-for="(option, option_key) in selectOptions"
+          :key="option_key"
+        >
           <option
             v-if="!Array.isArray(option)"
-            :key="option_key"
+            
             :value="option.value"
           >
             {{ option.label }}
           </option>
           <optgroup
             v-if="Array.isArray(option)"
-            :key="option_key"
+            
             :label="option_key"
           >
             <option
@@ -131,7 +134,7 @@
 import { defineComponent } from "vue";
 import deepClone from '../utilities.js';
 
-export default defineComponent({
+export default {
   name: "query-builder-rule",
 
   props: ['query', 'index', 'rule', 'styled', 'labels'],
@@ -201,5 +204,5 @@ export default defineComponent({
       this.$emit('update:query', updated_query);
     },
   }
-});
+};
 </script>
