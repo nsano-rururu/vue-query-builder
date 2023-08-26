@@ -93,7 +93,6 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
 import QueryBuilderRule from './QueryBuilderRule.vue';
 import deepClone from '../utilities.js';
 
@@ -116,7 +115,7 @@ export default {
 
   computed: {
     classObject () {
-      var classObject = {
+      let classObject = {
         'panel panel-default': this.styled,
       }
 
@@ -128,7 +127,7 @@ export default {
 
   methods: {
     ruleById (ruleId) {
-      var rule = null;
+      let rule = null;
 
       this.rules.forEach(function(value){
         if ( value.id === ruleId ) {

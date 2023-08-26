@@ -1,5 +1,5 @@
-import * as Vue from 'vue';
-import VueQueryBuilder from './VueQueryBuilder.vue'
+import { createApp } from 'vue';
+import VueQueryBuilder from './VueQueryBuilder.vue';
 
 let rules = [
     {
@@ -38,7 +38,7 @@ let rules = [
     },
   ];
 
-const app = Vue.createApp({
+const app = createApp({
   el: '#app',
 
   components: { VueQueryBuilder },

@@ -131,7 +131,6 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
 import deepClone from '../utilities.js';
 
 export default {

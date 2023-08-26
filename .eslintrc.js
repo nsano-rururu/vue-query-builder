@@ -7,6 +7,7 @@ module.exports = {
     'plugin:vue/vue3-recommended'
   ],
   rules: {
+    'no-var': 'error',
     'vue/no-mutating-props': 'off',
     'vue/require-prop-types': 'off',
     'vue/no-v-html': 'off',
