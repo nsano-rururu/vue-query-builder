@@ -34,14 +34,17 @@ var defaultLabels = {
 };
 
 export default {
-  name: 'vue-query-builder',
+  name: 'VueQueryBuilder',
 
   components: {
     QueryBuilderGroup
   },
 
   props: {
-    rules: Array,
+    rules: {
+      type: Array,
+      default: () => []
+    },
     labels: {
       type: Object,
       default () {
@@ -59,10 +62,13 @@ export default {
         return value >= 1
       }
     },
-    value: Object
+    value: {
+      type: Object,
+      default: () => {}
+    },
   },
 
-  emits: ['input'],
+  emits: ['update:modelValue'],
 
   data () {
     return {
@@ -140,12 +146,12 @@ export default {
     this.$watch(
       'query',
       newQuery => {
-        this.$emit('input', deepClone(newQuery));
+        this.$emit('update:modelValue', deepClone(newQuery));
       }, {
       deep: true
     });
 
-    if ( typeof this.$options.propsData.value !== "undefined" ) {
+    if ( typeof this.$options.propsData !== "undefined" ) {
       this.query = Object.assign(this.query, this.$options.propsData.value);
     }
   }

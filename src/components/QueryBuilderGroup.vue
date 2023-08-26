@@ -98,7 +98,7 @@ import QueryBuilderRule from './QueryBuilderRule.vue';
 import deepClone from '../utilities.js';
 
 export default {
-  name: "query-builder-group",
+  name: "QueryBuilderGroup",
 
   components: {
     QueryBuilderRule

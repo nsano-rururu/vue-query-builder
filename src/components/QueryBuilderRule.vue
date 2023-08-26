@@ -135,7 +135,7 @@ import { defineComponent } from "vue";
 import deepClone from '../utilities.js';
 
 export default {
-  name: "query-builder-rule",
+  name: "QueryBuilderRule",
 
   props: ['query', 'index', 'rule', 'styled', 'labels'],
 
