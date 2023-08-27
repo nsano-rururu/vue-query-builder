@@ -50,8 +50,8 @@
       <template v-if="isCustomComponent">
         <component
           :is="rule.component"
-          :value="query.value"
-          @input="updateQuery"
+          :model-value="query.value"
+          @update:model-value="updateQuery"
         />
       </template>
 
@@ -132,8 +132,9 @@
 
 <script>
 import deepClone from '../utilities.js';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: "QueryBuilderRule",
 
   props: ['query', 'index', 'rule', 'styled', 'labels'],
@@ -203,5 +204,5 @@ export default {
       this.$emit('update:query', updated_query);
     },
   }
-};
+});
 </script>

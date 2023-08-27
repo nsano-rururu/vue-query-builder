@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import QueryBuilderGroup from './components/QueryBuilderGroup.vue';
 import deepClone from './utilities.js';
 
@@ -32,7 +33,7 @@ let defaultLabels = {
   textInputPlaceholder: "value",
 };
 
-export default {
+export default defineComponent({
   name: 'VueQueryBuilder',
 
   components: {
@@ -61,7 +62,7 @@ export default {
         return value >= 1
       }
     },
-    value: {
+    modelValue: {
       type: Object,
       default: () => {}
     },
@@ -154,7 +155,7 @@ export default {
       this.query = Object.assign(this.query, this.$options.propsData.value);
     }
   }
-};
+});
 </script>
 
 <style>

@@ -95,8 +95,9 @@
 <script>
 import QueryBuilderRule from './QueryBuilderRule.vue';
 import deepClone from '../utilities.js';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: "QueryBuilderGroup",
 
   components: {
@@ -182,5 +183,5 @@ export default {
       this.$emit('update:query', updated_query);
     }
   }
-};
+});
 </script>
