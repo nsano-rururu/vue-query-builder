@@ -18,7 +18,7 @@
 import QueryBuilderGroup from './components/QueryBuilderGroup.vue';
 import deepClone from './utilities.js';
 
-var defaultLabels = {
+let defaultLabels = {
   matchType: "Match Type",
   matchTypeAll: "All",
   matchTypeAny: "Any",
@@ -115,8 +115,8 @@ export default {
     },
 
     mergedRules () {
-      var mergedRules = [];
-      var vm = this;
+      let mergedRules = [];
+      let vm = this;
 
       vm.rules.forEach(function(rule){
         if ( typeof vm.ruleTypes[rule.type] !== "undefined" ) {

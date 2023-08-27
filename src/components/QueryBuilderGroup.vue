@@ -63,7 +63,7 @@ export default {
 
   methods: {
     ruleById (ruleId) {
-      var rule = null;
+      let rule = null;
 
       this.rules.forEach(function(value){
         if ( value.id === ruleId ) {
@@ -127,7 +127,7 @@ export default {
 
   computed: {
     classObject () {
-      var classObject = {
+      let classObject = {
         'panel panel-default': this.styled,
       }
 
