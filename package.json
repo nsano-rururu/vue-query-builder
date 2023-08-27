@@ -13,9 +13,6 @@
     "docs:build": "vuepress build docs"
   },
   "dependencies": {
-    "@achrinza/node-ipc": "^10.1.9",
-    "@vue/compat": "^3.3.4",
-    "eslint": "^8.48.0",
     "vue": "^3.3.4"
   },
   "devDependencies": {
@@ -31,6 +28,7 @@
     "@vue/test-utils": "^2.4.1",
     "babel-jest": "^29.6.4",
     "bootstrap": "^3.3.7",
+    "eslint": "^8.48.0",
     "eslint-plugin-vue": "^9.17.0",
     "less": "^4.2.0",
     "less-loader": "^11.1.3",
