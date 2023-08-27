@@ -27,7 +27,7 @@
     "@vue/eslint-config-standard": "^8.0.1",
     "@vue/test-utils": "^2.4.1",
     "babel-jest": "^29.6.4",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.6.2",
     "eslint": "^8.48.0",
     "eslint-plugin-vue": "^9.17.0",
     "less": "^4.2.0",

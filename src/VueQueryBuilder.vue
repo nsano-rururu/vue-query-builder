@@ -171,10 +171,6 @@ export default defineComponent({
     padding: 15px;
   }
 
-  .vue-query-builder-styled .vqb-rule label {
-    margin-right: 10px;
-  }
-
   .vue-query-builder-styled .vqb-group.depth-1 .vqb-rule,
   .vue-query-builder-styled .vqb-group.depth-2 {
     border-left: 2px solid #8bc34a;

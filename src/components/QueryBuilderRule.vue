@@ -1,15 +1,15 @@
 <template>
   <div
     class="vqb-rule"
-    :class="{ 'panel panel-default form-inline': styled }"
+    :class="{ 'card': styled }"
   >
-    <div :class="{ 'form-group': styled }">
-      <label>{{ rule.label }}</label>
+    <div :class="{ 'form-inline': styled }">
+      <label class="mr-5">{{ rule.label }}</label>
 
       <select
         v-if="typeof rule.operands !== 'undefined'"
         v-model="query.selectedOperand"
-        :class="{ 'form-control': styled }"
+        :class="{ 'form-control mr-2': styled }"
       >
         <option
           v-for="(operand, operand_index) in rule.operands"
@@ -22,7 +22,7 @@
       <select
         v-if="! isMultipleChoice"
         v-model="query.selectedOperator"
-        :class="{ 'form-control': styled }"
+        :class="{ 'form-control mr-2': styled }"
       >
         <option
           v-for="(operator, operator_index) in rule.operators"
@@ -55,37 +55,39 @@
         />
       </template>
 
-      <div
+      <template
         v-if="rule.inputType === 'checkbox'"
-        class="checkbox"
       >
-        <label
+        <div
           v-for="(choice, choice_index) in rule.choices"
           :key="choice_index"
+          class="form-check form-check-inline"
         >
           <input
             v-model="query.value"
             type="checkbox"
             :value="choice.value"
+            class="form-check-input"
           > {{ choice.label }}
-        </label>
-      </div>
+        </div>
+      </template>
 
-      <div
+      <template
         v-if="rule.inputType === 'radio'"
-        class="radio"
       >
-        <label
+        <div
           v-for="(choice, choice_index2) in rule.choices"
           :key="choice_index2"
+          class="form-check form-check-inline"
         >
           <input
             v-model="query.value"
             type="radio"
             :value="choice.value"
+            class="form-check-input"
           > {{ choice.label }}
-        </label>
-      </div>
+        </div>
+      </template>
 
       <select
         v-if="rule.inputType === 'select'"
@@ -119,10 +121,10 @@
           </optgroup>
         </template>
       </select>
-
+      <!-- eslint-disable vue/no-v-html -->
       <button
         type="button"
-        :class="{ 'close pull-right': styled }"
+        :class="{ 'close ml-auto': styled }"
         @click="remove"
         v-html="labels.removeRule"
       />

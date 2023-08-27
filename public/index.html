@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Vue Query Builder</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   </head>
   <body>
     <noscript>
@@ -13,11 +13,13 @@
     </noscript>
 
     <div id="app">
-      <vue-query-builder :rules="rules" v-model="output"></vue-query-builder>
+      <div class="container mt-3">
+        <vue-query-builder :rules="rules" v-model="output"></vue-query-builder>
 
-      --
+        --
 
-      <pre>{{ outputFormatted }}</pre>
+        <pre>{{ outputFormatted }}</pre>
+      </div>
     </div>
     <!-- built files will be auto injected -->
   </body>

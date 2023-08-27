@@ -5,27 +5,29 @@
   >
     <div
       class="vqb-group-heading"
-      :class="{ 'panel-heading': styled }"
+      :class="{ 'card-header': styled }"
     >
       <div
         class="match-type-container"
         :class="{ 'form-inline': styled }"
       >
-        <div :class="{ 'form-group': styled }">
-          <label for="vqb-match-type">{{ labels.matchType }}</label>
-          <select
-            id="vqb-match-type"
-            v-model="query.logicalOperator"
-            :class="{ 'form-control': styled }"
-          >
-            <option>{{ labels.matchTypeAll }}</option>
-            <option>{{ labels.matchTypeAny }}</option>
-          </select>
-        </div>
+        <label
+          class="mr-2"
+          for="vqb-match-type"
+        >{{ labels.matchType }}</label>
+        <select
+          id="vqb-match-type"
+          v-model="query.logicalOperator"
+          :class="{ 'form-control': styled }"
+        >
+          <option>{{ labels.matchTypeAll }}</option>
+          <option>{{ labels.matchTypeAny }}</option>
+        </select>
+        <!-- eslint-disable vue/no-v-html -->
         <button
           v-if="depth > 1"
           type="button"
-          :class="{ 'close pull-right': styled }"
+          :class="{ 'close ml-auto': styled }"
           @click="remove"
           v-html="labels.removeGroup"
         />
@@ -34,7 +36,7 @@
 
     <div
       class="vqb-group-body"
-      :class="{ 'panel-body': styled }"
+      :class="{ 'card-body': styled }"
     >
       <div
         class="rule-actions"
@@ -43,7 +45,7 @@
         <div :class="{ 'form-group': styled }">
           <select
             v-model="selectedRule"
-            :class="{ 'form-control': styled }"
+            :class="{ 'form-control mr-2': styled }"
           >
             <option
               v-for="(rule, option_index) in rules"
@@ -53,17 +55,18 @@
               {{ rule.label }}
             </option>
           </select>
-
+          <!-- eslint-disable vue/no-v-html -->
           <button
             type="button"
-            :class="{ 'btn btn-default': styled }"
+            :class="{ 'btn btn-secondary mr-2': styled }"
             @click="addRule"
             v-html="labels.addRule"
           />
+          <!-- eslint-disable vue/no-v-html -->
           <button
             v-if="depth < maxDepth"
             type="button"
-            :class="{ 'btn btn-default': styled }"
+            :class="{ 'btn btn-secondary': styled }"
             @click="addGroup"
             v-html="labels.addGroup"
           />
@@ -117,7 +120,7 @@ export default defineComponent({
   computed: {
     classObject () {
       let classObject = {
-        'panel panel-default': this.styled,
+        'card card-default': this.styled,
       }
 
       classObject['depth-' + this.depth.toString()] = this.styled;
