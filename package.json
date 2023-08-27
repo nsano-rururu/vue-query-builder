@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@achrinza/node-ipc": "^10.1.9",
-    "@originjs/vue-codemod": "^1.1.1",
     "@vue/compat": "^3.3.4",
     "eslint": "^8.48.0",
     "vue": "^3.3.4"
