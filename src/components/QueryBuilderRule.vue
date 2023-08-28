@@ -11,12 +11,14 @@
         v-model="query.selectedOperand"
         :class="{ 'form-control mr-2': styled }"
       >
+        <!-- eslint-disable vue/no-template-shadow -->
         <option
-          v-for="(operand, operand_index) in rule.operands"
-          :key="operand_index"
+          v-for="(operand, index) in rule.operands"
+          :key="index"
         >
           {{ operand }}
         </option>
+        <!-- eslint-enable vue/no-template-shadow -->
       </select>
 
       <select
@@ -24,13 +26,15 @@
         v-model="query.selectedOperator"
         :class="{ 'form-control mr-2': styled }"
       >
+        <!-- eslint-disable vue/no-template-shadow --> 
         <option
-          v-for="(operator, operator_index) in rule.operators"
-          :key="operator_index"
+          v-for="(operator, index) in rule.operators"
+          :key="index"
           :value="operator"
         >
           {{ operator }}
         </option>
+        <!-- eslint-enable vue/no-template-shadow -->
       </select>
 
       <input
@@ -58,9 +62,10 @@
       <template
         v-if="rule.inputType === 'checkbox'"
       >
+        <!-- eslint-disable vue/no-template-shadow -->
         <div
-          v-for="(choice, choice_index) in rule.choices"
-          :key="choice_index"
+          v-for="(choice, index) in rule.choices"
+          :key="index"
           class="form-check form-check-inline"
         >
           <input
@@ -70,14 +75,16 @@
             class="form-check-input"
           > {{ choice.label }}
         </div>
+        <!-- eslint-enable vue/no-template-shadow -->
       </template>
 
       <template
         v-if="rule.inputType === 'radio'"
       >
+        <!-- eslint-disable vue/no-template-shadow -->
         <div
-          v-for="(choice, choice_index2) in rule.choices"
-          :key="choice_index2"
+          v-for="(choice, index) in rule.choices"
+          :key="index"
           class="form-check form-check-inline"
         >
           <input
@@ -87,6 +94,7 @@
             class="form-check-input"
           > {{ choice.label }}
         </div>
+        <!-- eslint-enable vue/no-template-shadow -->
       </template>
 
       <select
@@ -111,13 +119,15 @@
             
             :label="option_key"
           >
+            <!-- eslint-disable vue/no-template-shadow -->
             <option
-              v-for="(sub_option, sub_option_index) in option"
-              :key="sub_option_index"
+              v-for="(sub_option, index) in option"
+              :key="index"
               :value="sub_option.value"
             >
               {{ sub_option.label }}
             </option>
+            <!-- eslint-enable vue/no-template-shadow -->
           </optgroup>
         </template>
       </select>
@@ -128,6 +138,7 @@
         @click="remove"
         v-html="labels.removeRule"
       />
+      <!-- eslint-enable vue/no-v-html -->
     </div>
   </div>
 </template>

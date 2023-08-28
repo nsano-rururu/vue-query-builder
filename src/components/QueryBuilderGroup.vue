@@ -31,6 +31,7 @@
           @click="remove"
           v-html="labels.removeGroup"
         />
+        <!-- eslint-enable vue/no-v-html -->
       </div>
     </div>
 
@@ -47,13 +48,15 @@
             v-model="selectedRule"
             :class="{ 'form-control mr-2': styled }"
           >
+            <!-- eslint-disable vue/no-template-shadow -->
             <option
-              v-for="(rule, option_index) in rules"
-              :key="option_index"
+              v-for="(rule, index) in rules"
+              :key="index"
               :value="rule"
             >
               {{ rule.label }}
             </option>
+            <!-- eslint-enable vue/no-template-shadow -->
           </select>
           <!-- eslint-disable vue/no-v-html -->
           <button
@@ -62,7 +65,6 @@
             @click="addRule"
             v-html="labels.addRule"
           />
-          <!-- eslint-disable vue/no-v-html -->
           <button
             v-if="depth < maxDepth"
             type="button"
@@ -70,14 +72,16 @@
             @click="addGroup"
             v-html="labels.addGroup"
           />
+          <!-- eslint-enable vue/no-v-html -->
         </div>
       </div>
 
+      <!-- eslint-disable vue/no-template-shadow -->
       <div class="children">
         <component
           :is="child.type"
-          v-for="(child, child_index) in query.children"
-          :key="child_index"
+          v-for="(child, index) in query.children"
+          :key="index"
           v-model:query="child.query"
           :type="child.type"
           :rule-types="ruleTypes"
@@ -91,6 +95,7 @@
           @child-deletion-requested="removeChild"
         />
       </div>
+      <!-- eslint-enable vue/no-template-shadow -->
     </div>
   </div>
 </template>
