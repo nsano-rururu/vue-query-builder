@@ -1,79 +1,87 @@
 <template>
   <div
-    class="vqb-rule"
-    :class="{ 'card': styled }"
+    class="vqb-rule card"
   >
-    <div :class="{ 'form-inline': styled }">
-      <label class="mr-5">{{ rule.label }}</label>
-
-      <select
-        v-if="typeof rule.operands !== 'undefined'"
-        v-model="query.selectedOperand"
-        :class="{ 'form-control mr-2': styled }"
-      >
-        <!-- eslint-disable vue/no-template-shadow -->
-        <option
-          v-for="(operand, index) in rule.operands"
-          :key="index"
+    <div class="row gy-2 gx-3 align-items-center">
+      <label class="col-auto">{{ rule.label }}</label>
+      <div class="col-auto">
+        <select
+          v-if="typeof rule.operands !== 'undefined'"
+          v-model="query.selectedOperand"
+          :class="{ 'form-select me-2': styled }"
         >
-          {{ operand }}
-        </option>
-        <!-- eslint-enable vue/no-template-shadow -->
-      </select>
-
-      <select
-        v-if="! isMultipleChoice"
-        v-model="query.selectedOperator"
-        :class="{ 'form-control mr-2': styled }"
-      >
-        <!-- eslint-disable vue/no-template-shadow --> 
-        <option
-          v-for="(operator, index) in rule.operators"
-          :key="index"
-          :value="operator"
+          <!-- eslint-disable vue/no-template-shadow -->
+          <option
+            v-for="(operand, index) in rule.operands"
+            :key="index"
+          >
+            {{ operand }}
+          </option>
+          <!-- eslint-enable vue/no-template-shadow -->
+        </select>
+      </div>
+      <div class="col-auto">
+        <select
+          v-if="! isMultipleChoice"
+          v-model="query.selectedOperator"
+          :class="{ 'form-select me-2': styled }"
         >
-          {{ operator }}
-        </option>
-        <!-- eslint-enable vue/no-template-shadow -->
-      </select>
-
-      <input
-        v-if="rule.inputType === 'text'"
-        v-model="query.value"
-        :class="{ 'form-control': styled }"
-        type="text"
-        :placeholder="labels.textInputPlaceholder"
-      >
-      <input
-        v-if="rule.inputType === 'number'"
-        v-model="query.value"
-        :class="{ 'form-control': styled }"
-        type="number"
-      >
-
+          <!-- eslint-disable vue/no-template-shadow --> 
+          <option
+            v-for="(operator, index) in rule.operators"
+            :key="index"
+            :value="operator"
+          >
+            {{ operator }}
+          </option>
+          <!-- eslint-enable vue/no-template-shadow -->
+        </select>
+      </div>
+      <div class="col-auto">
+        <input
+          v-if="rule.inputType === 'text'"
+          v-model="query.value"
+          :class="{ 'form-control': styled }"
+          type="text"
+          :placeholder="labels.textInputPlaceholder"
+        >
+      </div>
+      <div class="col-auto">
+        <input
+          v-if="rule.inputType === 'number'"
+          v-model="query.value"
+          :class="{ 'form-control': styled }"
+          type="number"
+        >
+      </div>
+      
       <template v-if="isCustomComponent">
-        <component
-          :is="rule.component"
-          :model-value="query.value"
-          @update:model-value="updateQuery"
-        />
+        <div class="col-auto">
+          <component
+            :is="rule.component"
+            :model-value="query.value"
+            @update:model-value="updateQuery"
+          />
+        </div>
       </template>
 
       <template
         v-if="rule.inputType === 'checkbox'"
       >
         <!-- eslint-disable vue/no-template-shadow -->
-        <div
-          v-for="(choice, index) in rule.choices"
-          :key="index"
-          class="form-check form-check-inline"
-        >
-          <input
-            v-model="query.value"
-            type="checkbox"
-            :value="choice.value"
-            class="form-check-input"
-          > {{ choice.label }}
+        <div class="col-auto">
+          <div
+            v-for="(choice, index) in rule.choices"
+            :key="index"
+            class="form-check form-check-inline"
+          >
+            <input
+              v-model="query.value"
+              type="checkbox"
+              :value="choice.value"
+              class="form-check-input"
+            > {{ choice.label }}
+          </div>
         </div>
         <!-- eslint-enable vue/no-template-shadow -->
       </template>
@@ -82,62 +90,67 @@
         v-if="rule.inputType === 'radio'"
       >
         <!-- eslint-disable vue/no-template-shadow -->
-        <div
-          v-for="(choice, index) in rule.choices"
-          :key="index"
-          class="form-check form-check-inline"
-        >
-          <input
-            v-model="query.value"
-            type="radio"
-            :value="choice.value"
-            class="form-check-input"
-          > {{ choice.label }}
+        <div class="col-auto">
+          <div
+            v-for="(choice, index) in rule.choices"
+            :key="index"
+            class="form-check form-check-inline"
+          >
+            <input
+              v-model="query.value"
+              type="radio"
+              :value="choice.value"
+              class="form-check-input"
+            > {{ choice.label }}
+          </div>
         </div>
         <!-- eslint-enable vue/no-template-shadow -->
       </template>
-
-      <select
-        v-if="rule.inputType === 'select'"
-        v-model="query.value"
-        :class="{ 'form-control': styled }"
-        :multiple="rule.type === 'multi-select'"
-      >
-        <template
-          v-for="(option, option_key) in selectOptions"
-          :key="option_key"
+      <!-- eslint-disable vue/no-template-shadow -->
+      <div class="col-auto">
+        <select
+          v-if="rule.inputType === 'select'"
+          v-model="query.value"
+          :class="{ 'form-select': styled }"
+          :multiple="rule.type === 'multi-select'"
         >
-          <option
-            v-if="!Array.isArray(option)"
-            
-            :value="option.value"
+          <template
+            v-for="(option, index) in selectOptions"
+            :key="index"
           >
-            {{ option.label }}
-          </option>
-          <optgroup
-            v-if="Array.isArray(option)"
-            
-            :label="option_key"
-          >
-            <!-- eslint-disable vue/no-template-shadow -->
             <option
-              v-for="(sub_option, index) in option"
-              :key="index"
-              :value="sub_option.value"
+              v-if="!Array.isArray(option)"
+              
+              :value="option.value"
             >
-              {{ sub_option.label }}
+              {{ option.label }}
             </option>
-            <!-- eslint-enable vue/no-template-shadow -->
-          </optgroup>
-        </template>
-      </select>
+            <optgroup
+              v-if="Array.isArray(option)"
+              
+              :label="index"
+            >
+              <option
+                v-for="(sub_option, index) in option"
+                :key="index"
+                :value="sub_option.value"
+              >
+                {{ sub_option.label }}
+              </option>
+            </optgroup>
+          </template>
+        </select>
+      </div>
+      <!-- eslint-enable vue/no-template-shadow -->
       <!-- eslint-disable vue/no-v-html -->
-      <button
-        type="button"
-        :class="{ 'close ml-auto': styled }"
-        @click="remove"
-        v-html="labels.removeRule"
-      />
+      <div class="col-auto d-flex">
+        <button
+          type="button"
+          :class="{ 'close ms-auto btn': styled }"
+          @click="remove"
+          v-html="labels.removeRule"
+        />
+      </div>
       <!-- eslint-enable vue/no-v-html -->
     </div>
   </div>

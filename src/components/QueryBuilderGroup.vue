@@ -9,28 +9,34 @@
     >
       <div
         class="match-type-container"
-        :class="{ 'form-inline': styled }"
+        :class="{ 'row gy-2 gx-3 align-items-center': styled }"
       >
-        <label
-          class="mr-2"
-          for="vqb-match-type"
-        >{{ labels.matchType }}</label>
-        <select
-          id="vqb-match-type"
-          v-model="query.logicalOperator"
-          :class="{ 'form-control': styled }"
-        >
-          <option>{{ labels.matchTypeAll }}</option>
-          <option>{{ labels.matchTypeAny }}</option>
-        </select>
+        <div class="col-auto">
+          <label
+            class="me-2"
+            for="vqb-match-type"
+          >{{ labels.matchType }}</label>
+        </div>
+        <div class="col-auto">
+          <select
+            id="vqb-match-type"
+            v-model="query.logicalOperator"
+            :class="{ 'form-select': styled }"
+          >
+            <option>{{ labels.matchTypeAll }}</option>
+            <option>{{ labels.matchTypeAny }}</option>
+          </select>
+        </div>
         <!-- eslint-disable vue/no-v-html -->
-        <button
-          v-if="depth > 1"
-          type="button"
-          :class="{ 'close ml-auto': styled }"
-          @click="remove"
-          v-html="labels.removeGroup"
-        />
+        <div class="col-auto">
+          <button
+            v-if="depth > 1"
+            type="button"
+            :class="{ 'close ms-auto btn': styled }"
+            @click="remove"
+            v-html="labels.removeGroup"
+          />
+        </div>
         <!-- eslint-enable vue/no-v-html -->
       </div>
     </div>
@@ -41,12 +47,12 @@
     >
       <div
         class="rule-actions"
-        :class="{ 'form-inline': styled }"
+        :class="{ 'row gy-2 gx-3 align-items-center': styled }"
       >
-        <div :class="{ 'form-group': styled }">
+        <div class="col-auto">
           <select
             v-model="selectedRule"
-            :class="{ 'form-control mr-2': styled }"
+            :class="{ 'form-select me-2': styled }"
           >
             <!-- eslint-disable vue/no-template-shadow -->
             <option
@@ -58,13 +64,17 @@
             </option>
             <!-- eslint-enable vue/no-template-shadow -->
           </select>
-          <!-- eslint-disable vue/no-v-html -->
+        </div>
+        <!-- eslint-disable vue/no-v-html -->
+        <div class="col-auto">
           <button
             type="button"
-            :class="{ 'btn btn-secondary mr-2': styled }"
+            :class="{ 'btn btn-secondary me-2': styled }"
             @click="addRule"
             v-html="labels.addRule"
           />
+        </div>
+        <div class="col-auto">
           <button
             v-if="depth < maxDepth"
             type="button"
@@ -72,31 +82,31 @@
             @click="addGroup"
             v-html="labels.addGroup"
           />
-          <!-- eslint-enable vue/no-v-html -->
         </div>
+        <!-- eslint-enable vue/no-v-html -->
       </div>
-
-      <!-- eslint-disable vue/no-template-shadow -->
-      <div class="children">
-        <component
-          :is="child.type"
-          v-for="(child, index) in query.children"
-          :key="index"
-          v-model:query="child.query"
-          :type="child.type"
-          :rule-types="ruleTypes"
-          :rules="rules"
-          :rule="ruleById(child.query.rule)"
-          :index="index"
-          :max-depth="maxDepth"
-          :depth="depth + 1"
-          :styled="styled"
-          :labels="labels"
-          @child-deletion-requested="removeChild"
-        />
-      </div>
-      <!-- eslint-enable vue/no-template-shadow -->
     </div>
+
+    <!-- eslint-disable vue/no-template-shadow -->
+    <div class="children">
+      <component
+        :is="child.type"
+        v-for="(child, index) in query.children"
+        :key="index"
+        v-model:query="child.query"
+        :type="child.type"
+        :rule-types="ruleTypes"
+        :rules="rules"
+        :rule="ruleById(child.query.rule)"
+        :index="index"
+        :max-depth="maxDepth"
+        :depth="depth + 1"
+        :styled="styled"
+        :labels="labels"
+        @child-deletion-requested="removeChild"
+      />
+    </div>
+    <!-- eslint-enable vue/no-template-shadow -->
   </div>
 </template>
 
