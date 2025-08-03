@@ -3,7 +3,7 @@
   "version": "0.6.1",
   "main": "./dist/VueQueryBuilder.common.js",
   "scripts": {
-    "serve": "vite --config vite.demo.config.js",
+    "serve": "vite --config vite.demo.config.js --host 0.0.0.0",
     "build": "vite build",
     "build:demo": "vite build --config vite.demo.config.js",
     "lint": "eslint src --ext .vue,.js,.ts --fix",
@@ -13,11 +13,13 @@
     "docs:build": "vuepress build docs"
   },
   "dependencies": {
+    "@vue/vue3-jest": "^29.2.6",
     "vue": "^3.5.18"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",
     "@babel/eslint-parser": "^7.28.0",
+    "@vitejs/plugin-vue": "^5.2.1",
     "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-plugin-e2e-cypress": "^5.0.8",
     "@vue/cli-plugin-eslint": "^5.0.8",
@@ -26,10 +28,9 @@
     "@vue/compiler-sfc": "^3.5.18",
     "@vue/eslint-config-standard": "^9.0.1",
     "@vue/test-utils": "^2.4.6",
-    "@vitejs/plugin-vue": "^5.2.1",
     "@vuepress/bundler-vite": "2.0.0-rc.24",
     "@vuepress/theme-default": "2.0.0-rc.24",
-    "babel-jest": "^30.0.5",
+    "babel-jest": "^29.7.0",
     "bootstrap": "^5.3.7",
     "eslint": "^9.32.0",
     "eslint-plugin-vue": "^10.4.0",

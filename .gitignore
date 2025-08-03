@@ -24,3 +24,7 @@ pnpm-debug.log*
 
 # Build artifacts
 /docs/.vuepress/dist
+/docs/.vuepress/.temp
+
+# Demo index.html (copied from public/)
+/index.html
