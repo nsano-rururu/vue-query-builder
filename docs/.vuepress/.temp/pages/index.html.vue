@@ -1,18 +1,9 @@
----
-footer: MIT Licensed | Copyright © 2017-present Daniel Abernathy
----
-
-# Vue Query Builder
-
-Vue Query Builder is a user interface that makes it easy for your users to create queries of any kind. It's useful if you need a tool for generating reports, filtering data, and more.
-
-Each instance of Vue Query Builder consists of groups and rules. Groups can contain rules and other groups. Each group has a match type of either "match all" (AND) or "match any" (OR). The component outputs JSON which you can pass to your server to parse.
-
-### Basic Demo
-
+<template><div><h1 id="vue-query-builder" tabindex="-1"><a class="header-anchor" href="#vue-query-builder"><span>Vue Query Builder</span></a></h1>
+<p>Vue Query Builder is a user interface that makes it easy for your users to create queries of any kind. It's useful if you need a tool for generating reports, filtering data, and more.</p>
+<p>Each instance of Vue Query Builder consists of groups and rules. Groups can contain rules and other groups. Each group has a match type of either &quot;match all&quot; (AND) or &quot;match any&quot; (OR). The component outputs JSON which you can pass to your server to parse.</p>
+<h3 id="basic-demo" tabindex="-1"><a class="header-anchor" href="#basic-demo"><span>Basic Demo</span></a></h3>
 <br>
-
-<vue-query-builder :rules="rules" v-model="query"></vue-query-builder>
+<vue-query-builder :rules="rules" v-model="query"></vue-query-builder></div></template>
 
 <script>
 export default {
@@ -82,6 +73,7 @@ export default {
   }
 }
 </script>
+
 <style lang="less">
 .vue-query-builder, .vue-query-builder * {
   box-sizing: border-box;

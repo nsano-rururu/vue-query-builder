@@ -1,0 +1,1 @@
+export const siteData = JSON.parse("{\"base\":\"/vue-query-builder/\",\"lang\":\"en-US\",\"title\":\"Vue Query Builder\",\"description\":\"A UI component for building complex queries with nested conditionals.\",\"head\":[],\"locales\":{}}")

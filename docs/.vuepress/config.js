@@ -1,45 +1,43 @@
-const path = require('path');
+import { defineUserConfig } from 'vuepress';
+import { defaultTheme } from '@vuepress/theme-default';
+import { viteBundler } from '@vuepress/bundler-vite';
 
-module.exports = {
+export default defineUserConfig({
     title: 'Vue Query Builder',
     description: 'A UI component for building complex queries with nested conditionals.',
     base: '/vue-query-builder/',
 
-    themeConfig: {
-        nav: [
-        ],
+    bundler: viteBundler({
+        viteOptions: {
+            define: {
+                __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
+                __VUE_PROD_DEVTOOLS__: false,
+                __VUE_OPTIONS_API__: true
+            }
+        }
+    }),
 
+    theme: defaultTheme({
+        navbar: [],
+        
         repo: 'dabernathy89/vue-query-builder',
         docsDir: 'docs',
         docsBranch: 'gh-pages',
-        editLinks: true,
+        editLink: true,
 
         sidebar: [
-            ['/', 'Introduction'],
-            ['/demos', 'Demos'],
-            ['/getting-started', 'Getting Started'],
-            ['/configuration', 'Configuration'],
-            ['/roadmap', 'Roadmap'],
-            ['/contributing', 'Contributing'],
-            ['/about', 'About'],
+            {
+                text: 'Guide',
+                children: [
+                    '/',
+                    '/demos',
+                    '/getting-started',
+                    '/configuration',
+                    '/roadmap',
+                    '/contributing',
+                    '/about',
+                ]
+            }
         ]
-    },
-
-    // configureWebpack: {
-    //     resolve: {
-    //         alias: {
-    //             bootstrap: path.resolve(__dirname, 'node_modules/bootstrap'),
-    //         }
-    //     }
-    // }
-
-    // module.exports = {
-    //   ...
-    //   module: {
-    //     rules: [{
-    //       test: /\.less$/,
-    //       loader: 'less-loader' // compiles Less to CSS
-    //     }]
-    //   }
-    // };
-}
+    }),
+});
