@@ -14,12 +14,7 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      input: './index.html'
-    }
-  },
-  resolve: {
-    alias: {
-      vue: 'vue/dist/vue.esm-bundler.js'
+      input: './public/index.html'
     }
   }
 })

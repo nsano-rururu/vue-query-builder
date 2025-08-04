@@ -10,11 +10,20 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "postinstall": "vue-demi-switch"
   },
   "dependencies": {
-    "@vue/vue3-jest": "^29.2.6",
-    "vue": "^3.5.18"
+    "vue-demi": "^0.14.10"
+  },
+  "peerDependencies": {
+    "@vue/composition-api": "^1.0.0-rc.1",
+    "vue": "^2.0.0 || >=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",
@@ -28,6 +37,7 @@
     "@vue/compiler-sfc": "^3.5.18",
     "@vue/eslint-config-standard": "^9.0.1",
     "@vue/test-utils": "^2.4.6",
+    "@vue/vue3-jest": "^29.2.6",
     "@vuepress/bundler-vite": "2.0.0-rc.24",
     "@vuepress/theme-default": "2.0.0-rc.24",
     "babel-jest": "^29.7.0",
@@ -39,6 +49,7 @@
     "sass": "^1.89.2",
     "sass-loader": "^16.0.5",
     "vite": "^6.0.7",
+    "vue": "^3.5.18",
     "vuepress": "2.0.0-rc.24"
   },
   "browserslist": [

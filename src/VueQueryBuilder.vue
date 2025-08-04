@@ -4,7 +4,8 @@
     :class="{ 'vue-query-builder-styled': styled }"
   >
     <query-builder-group
-      v-model:query="query"
+      :query="query"
+      @update:query="updateQuery"
       :index="0"
       :rule-types="ruleTypes"
       :rules="mergedRules"
@@ -18,7 +19,7 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, isVue2 } from 'vue-demi';
 import QueryBuilderGroup from './components/QueryBuilderGroup.vue';
 import deepClone from './utilities.js';
 
@@ -142,6 +143,12 @@ export default defineComponent({
     }
   },
 
+  methods: {
+    updateQuery(newQuery) {
+      this.query = newQuery;
+    }
+  },
+
   mounted () {
     this.$watch(
       'query',
@@ -151,8 +158,10 @@ export default defineComponent({
       deep: true
     });
 
-    if ( typeof this.$options.propsData !== "undefined" ) {
-      this.query = Object.assign(this.query, this.$options.propsData.value);
+    // Handle Vue 2 and Vue 3 compatibility for initial value
+    const initialValue = this.modelValue || (isVue2 && this.$options.propsData?.value);
+    if (initialValue && Object.keys(initialValue).length > 0) {
+      this.query = Object.assign(this.query, initialValue);
     }
   }
 });

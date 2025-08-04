@@ -158,7 +158,7 @@
 
 <script>
 import deepClone from '../utilities.js';
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue-demi';
 
 export default defineComponent({
   name: "QueryBuilderRule",
@@ -229,6 +229,24 @@ export default defineComponent({
       updated_query.value = value;
       this.$emit('update:query', updated_query);
     },
+  },
+
+  watch: {
+    'query.selectedOperand' (newValue) {
+      let updated_query = deepClone(this.query);
+      updated_query.selectedOperand = newValue;
+      this.$emit('update:query', updated_query);
+    },
+    'query.selectedOperator' (newValue) {
+      let updated_query = deepClone(this.query);
+      updated_query.selectedOperator = newValue;
+      this.$emit('update:query', updated_query);
+    },
+    'query.value' (newValue) {
+      let updated_query = deepClone(this.query);
+      updated_query.value = newValue;
+      this.$emit('update:query', updated_query);
+    }
   }
 });
 </script>

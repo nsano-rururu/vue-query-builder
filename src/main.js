@@ -1,4 +1,4 @@
-import { createApp } from 'vue';
+import { createApp } from 'vue-demi';
 import VueQueryBuilder from './VueQueryBuilder.vue';
 
 let rules = [
