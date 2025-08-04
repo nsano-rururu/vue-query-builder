@@ -1,3 +1,1 @@
-import comp from "/home/runner/work/vue-query-builder/vue-query-builder/docs/.vuepress/.temp/pages/404.html.vue"
-const data = JSON.parse("{\"path\":\"/404.html\",\"title\":\"\",\"lang\":\"en-US\",\"frontmatter\":{\"layout\":\"NotFound\"},\"git\":{},\"filePathRelative\":null}")
-export { comp, data }
+export const data = JSON.parse("{\"key\":\"v-3706649a\",\"path\":\"/404.html\",\"title\":\"\",\"lang\":\"en-US\",\"frontmatter\":{\"layout\":\"NotFound\"},\"headers\":[],\"git\":{},\"filePathRelative\":null}")

@@ -195,6 +195,24 @@ export default defineComponent({
     },
   },
 
+  watch: {
+    'query.selectedOperand' (newValue) {
+      let updated_query = deepClone(this.query);
+      updated_query.selectedOperand = newValue;
+      this.$emit('update:query', updated_query);
+    },
+    'query.selectedOperator' (newValue) {
+      let updated_query = deepClone(this.query);
+      updated_query.selectedOperator = newValue;
+      this.$emit('update:query', updated_query);
+    },
+    'query.value' (newValue) {
+      let updated_query = deepClone(this.query);
+      updated_query.value = newValue;
+      this.$emit('update:query', updated_query);
+    }
+  },
+
   beforeMount () {
     if (this.rule.type === 'custom-component') {
       this.$options.components[this.id] = this.rule.component;
@@ -229,24 +247,6 @@ export default defineComponent({
       updated_query.value = value;
       this.$emit('update:query', updated_query);
     },
-  },
-
-  watch: {
-    'query.selectedOperand' (newValue) {
-      let updated_query = deepClone(this.query);
-      updated_query.selectedOperand = newValue;
-      this.$emit('update:query', updated_query);
-    },
-    'query.selectedOperator' (newValue) {
-      let updated_query = deepClone(this.query);
-      updated_query.selectedOperator = newValue;
-      this.$emit('update:query', updated_query);
-    },
-    'query.value' (newValue) {
-      let updated_query = deepClone(this.query);
-      updated_query.value = newValue;
-      this.$emit('update:query', updated_query);
-    }
   }
 });
 </script>

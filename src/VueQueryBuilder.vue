@@ -5,7 +5,6 @@
   >
     <query-builder-group
       :query="query"
-      @update:query="updateQuery"
       :index="0"
       :rule-types="ruleTypes"
       :rules="mergedRules"
@@ -14,6 +13,7 @@
       :styled="styled"
       :labels="mergedLabels"
       type="query-builder-group"
+      @update:query="updateQuery"
     />
   </div>
 </template>
@@ -143,12 +143,6 @@ export default defineComponent({
     }
   },
 
-  methods: {
-    updateQuery(newQuery) {
-      this.query = newQuery;
-    }
-  },
-
   mounted () {
     this.$watch(
       'query',
@@ -162,6 +156,12 @@ export default defineComponent({
     const initialValue = this.modelValue || (isVue2 && this.$options.propsData?.value);
     if (initialValue && Object.keys(initialValue).length > 0) {
       this.query = Object.assign(this.query, initialValue);
+    }
+  },
+
+  methods: {
+    updateQuery(newQuery) {
+      this.query = newQuery;
     }
   }
 });

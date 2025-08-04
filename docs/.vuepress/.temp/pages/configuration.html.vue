@@ -1,35 +1,33 @@
 <template><div><h1 id="configuration" tabindex="-1"><a class="header-anchor" href="#configuration"><span>Configuration</span></a></h1>
 <h2 id="props-events" tabindex="-1"><a class="header-anchor" href="#props-events"><span>Props &amp; Events</span></a></h2>
 <p>These are all of the props and events that can be defined on the Vue Query Builder component. See below for a detailed explanation of each one.</p>
-<div class="language-html line-numbers-mode" data-highlighter="prismjs" data-ext="html"><pre v-pre><code class="language-html"><span class="line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>vue-query-builder</span></span>
-<span class="line">  <span class="token attr-name">:rules</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>rules<span class="token punctuation">"</span></span></span>
-<span class="line">  <span class="token attr-name">:maxDepth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span></span>
-<span class="line">  <span class="token attr-name">:labels</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>labels<span class="token punctuation">"</span></span></span>
-<span class="line">  <span class="token attr-name">:styled</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>styled<span class="token punctuation">"</span></span></span>
-<span class="line">  <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>query<span class="token punctuation">"</span></span></span>
-<span class="line">  <span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>vue-query-builder</span><span class="token punctuation">></span></span></span>
-<span class="line"></span></code></pre>
-<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="rules" tabindex="-1"><a class="header-anchor" href="#rules"><span>rules <Badge text="required" type="error" vertical="middle" /> <Badge text="Type: Array" vertical="middle" /></span></a></h3>
+<div class="language-html line-numbers-mode" data-ext="html" data-title="html"><pre v-pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>vue-query-builder</span>
+  <span class="token attr-name">:rules</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>rules<span class="token punctuation">"</span></span>
+  <span class="token attr-name">:maxDepth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span>
+  <span class="token attr-name">:labels</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>labels<span class="token punctuation">"</span></span>
+  <span class="token attr-name">:styled</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>styled<span class="token punctuation">"</span></span>
+  <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>query<span class="token punctuation">"</span></span>
+  <span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>vue-query-builder</span><span class="token punctuation">></span></span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="rules" tabindex="-1"><a class="header-anchor" href="#rules"><span>rules <Badge text="required" type="error" vertical="middle" /> <Badge text="Type: Array" vertical="middle" /></span></a></h3>
 <p>The <code v-pre>rules</code> prop provides all of the rules that can be selected within the UI and added to a group.</p>
 <p>The rules prop is an array of objects. A simple set of rules might look like this:</p>
-<div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line">rules <span class="token operator">=</span> <span class="token punctuation">[</span></span>
-<span class="line">    <span class="token punctuation">{</span></span>
-<span class="line">        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"text"</span><span class="token punctuation">,</span></span>
-<span class="line">        <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token string">"vegetable"</span><span class="token punctuation">,</span></span>
-<span class="line">        <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">"Vegetable"</span><span class="token punctuation">,</span></span>
-<span class="line">    <span class="token punctuation">}</span><span class="token punctuation">,</span></span>
-<span class="line">    <span class="token punctuation">{</span></span>
-<span class="line">        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"radio"</span><span class="token punctuation">,</span></span>
-<span class="line">        <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token string">"fruit"</span><span class="token punctuation">,</span></span>
-<span class="line">        <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">"Fruit"</span><span class="token punctuation">,</span></span>
-<span class="line">        <span class="token literal-property property">choices</span><span class="token operator">:</span> <span class="token punctuation">[</span></span>
-<span class="line">            <span class="token punctuation">{</span><span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">"Apple"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"apple"</span><span class="token punctuation">}</span><span class="token punctuation">,</span></span>
-<span class="line">            <span class="token punctuation">{</span><span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">"Banana"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"banana"</span><span class="token punctuation">}</span></span>
-<span class="line">        <span class="token punctuation">]</span></span>
-<span class="line">    <span class="token punctuation">}</span><span class="token punctuation">,</span></span>
-<span class="line"><span class="token punctuation">]</span><span class="token punctuation">;</span></span>
-<span class="line"></span></code></pre>
-<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>Each object in the <code v-pre>rules</code> array can contain the following properties:</p>
+<div class="language-javascript line-numbers-mode" data-ext="js" data-title="js"><pre v-pre class="language-javascript"><code>rules <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"text"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token string">"vegetable"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">"Vegetable"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"radio"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token string">"fruit"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">"Fruit"</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">choices</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span><span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">"Apple"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"apple"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span><span class="token literal-property property">label</span><span class="token operator">:</span> <span class="token string">"Banana"</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">"banana"</span><span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>Each object in the <code v-pre>rules</code> array can contain the following properties:</p>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -98,32 +96,29 @@
 <hr>
 <h3 id="labels" tabindex="-1"><a class="header-anchor" href="#labels"><span>labels <Badge text="optional" type="warn" vertical="middle" /> <Badge text="Type: Object" vertical="middle" /></span></a></h3>
 <p>Replace the default labels used in the UI. The default values are:</p>
-<div class="language-json line-numbers-mode" data-highlighter="prismjs" data-ext="json"><pre v-pre><code class="language-json"><span class="line"><span class="token punctuation">{</span></span>
-<span class="line">  <span class="token property">"matchType"</span><span class="token operator">:</span> <span class="token string">"Match Type"</span><span class="token punctuation">,</span></span>
-<span class="line">  <span class="token property">"matchTypeAll"</span><span class="token operator">:</span> <span class="token string">"All"</span><span class="token punctuation">,</span></span>
-<span class="line">  <span class="token property">"matchTypeAny"</span><span class="token operator">:</span> <span class="token string">"Any"</span><span class="token punctuation">,</span></span>
-<span class="line">  <span class="token property">"addRule"</span><span class="token operator">:</span> <span class="token string">"Add Rule"</span><span class="token punctuation">,</span></span>
-<span class="line">  <span class="token property">"removeRule"</span><span class="token operator">:</span> <span class="token string">"&amp;times;"</span><span class="token punctuation">,</span></span>
-<span class="line">  <span class="token property">"addGroup"</span><span class="token operator">:</span> <span class="token string">"Add Group"</span><span class="token punctuation">,</span></span>
-<span class="line">  <span class="token property">"removeGroup"</span><span class="token operator">:</span> <span class="token string">"&amp;times;"</span><span class="token punctuation">,</span></span>
-<span class="line">  <span class="token property">"textInputPlaceholder"</span><span class="token operator">:</span> <span class="token string">"value"</span><span class="token punctuation">,</span></span>
-<span class="line"><span class="token punctuation">}</span></span>
-<span class="line"></span></code></pre>
-<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><hr>
+<div class="language-json line-numbers-mode" data-ext="json" data-title="json"><pre v-pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">"matchType"</span><span class="token operator">:</span> <span class="token string">"Match Type"</span><span class="token punctuation">,</span>
+  <span class="token property">"matchTypeAll"</span><span class="token operator">:</span> <span class="token string">"All"</span><span class="token punctuation">,</span>
+  <span class="token property">"matchTypeAny"</span><span class="token operator">:</span> <span class="token string">"Any"</span><span class="token punctuation">,</span>
+  <span class="token property">"addRule"</span><span class="token operator">:</span> <span class="token string">"Add Rule"</span><span class="token punctuation">,</span>
+  <span class="token property">"removeRule"</span><span class="token operator">:</span> <span class="token string">"&amp;times;"</span><span class="token punctuation">,</span>
+  <span class="token property">"addGroup"</span><span class="token operator">:</span> <span class="token string">"Add Group"</span><span class="token punctuation">,</span>
+  <span class="token property">"removeGroup"</span><span class="token operator">:</span> <span class="token string">"&amp;times;"</span><span class="token punctuation">,</span>
+  <span class="token property">"textInputPlaceholder"</span><span class="token operator">:</span> <span class="token string">"value"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><hr>
 <h3 id="v-model" tabindex="-1"><a class="header-anchor" href="#v-model"><span>v-model <Badge text="optional" type="warn" vertical="middle" /> <Badge text="Type: Object" vertical="middle" /></span></a></h3>
 <p>Provide a value to the <code v-pre>v-model</code> attribute to give some initial state to the query builder, and to automatically get the updated value of the query as it changes. If you don't want to provide initial state, you can just pass an empty object:</p>
-<div class="language-html line-numbers-mode" data-highlighter="prismjs" data-ext="html"><pre v-pre><code class="language-html"><span class="line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>vue-query-builder</span></span>
-<span class="line">  <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>query<span class="token punctuation">"</span></span></span>
-<span class="line">  <span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>vue-query-builder</span><span class="token punctuation">></span></span></span>
-<span class="line"></span></code></pre>
-<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-javascript line-numbers-mode" data-highlighter="prismjs" data-ext="js"><pre v-pre><code class="language-javascript"><span class="line">  <span class="token comment">// Inside your Vue app / component</span></span>
-<span class="line">  <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
-<span class="line">    <span class="token keyword">return</span> <span class="token punctuation">{</span></span>
-<span class="line">      <span class="token literal-property property">query</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span></span>
-<span class="line">    <span class="token punctuation">}</span></span>
-<span class="line">  <span class="token punctuation">}</span></span>
-<span class="line"></span></code></pre>
-<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><hr>
+<div class="language-html line-numbers-mode" data-ext="html" data-title="html"><pre v-pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>vue-query-builder</span>
+  <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>query<span class="token punctuation">"</span></span>
+  <span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>vue-query-builder</span><span class="token punctuation">></span></span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-javascript line-numbers-mode" data-ext="js" data-title="js"><pre v-pre class="language-javascript"><code>  <span class="token comment">// Inside your Vue app / component</span>
+  <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">query</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><hr>
 <h3 id="styled" tabindex="-1"><a class="header-anchor" href="#styled"><span>styled <Badge text="optional" type="warn" vertical="middle" /> <Badge text="Type: Boolean" vertical="middle" /> <Badge text="Default: true" vertical="middle" /></span></a></h3>
 <p>When true, the component will include Bootstrap 3 CSS classes and some basic styling.</p>
 </div></template>

@@ -1,14 +1,11 @@
-import * as clientConfig0 from '/home/runner/work/vue-query-builder/vue-query-builder/node_modules/@vuepress/plugin-active-header-links/lib/client/config.js'
-import * as clientConfig1 from '/home/runner/work/vue-query-builder/vue-query-builder/node_modules/@vuepress/plugin-back-to-top/lib/client/config.js'
-import * as clientConfig2 from '/home/runner/work/vue-query-builder/vue-query-builder/node_modules/@vuepress/plugin-copy-code/lib/client/config.js'
-import * as clientConfig3 from '/home/runner/work/vue-query-builder/vue-query-builder/node_modules/@vuepress/plugin-external-link-icon/lib/client/config.js'
-import * as clientConfig4 from '/home/runner/work/vue-query-builder/vue-query-builder/docs/.vuepress/.temp/git/config.js'
-import * as clientConfig5 from '/home/runner/work/vue-query-builder/vue-query-builder/node_modules/@vuepress/plugin-medium-zoom/lib/client/config.js'
-import * as clientConfig6 from '/home/runner/work/vue-query-builder/vue-query-builder/node_modules/@vuepress/plugin-nprogress/lib/client/config.js'
-import * as clientConfig7 from '/home/runner/work/vue-query-builder/vue-query-builder/docs/.vuepress/.temp/prismjs/config.js'
-import * as clientConfig8 from '/home/runner/work/vue-query-builder/vue-query-builder/node_modules/@vuepress/plugin-theme-data/lib/client/config.js'
-import * as clientConfig9 from '/home/runner/work/vue-query-builder/vue-query-builder/node_modules/@vuepress/theme-default/lib/client/config.js'
-import * as clientConfig10 from '/home/runner/work/vue-query-builder/vue-query-builder/docs/.vuepress/client.js'
+import clientConfig0 from '/home/runner/work/vue-query-builder/vue-query-builder/node_modules/@vuepress/plugin-active-header-links/lib/client/config.js'
+import clientConfig1 from '/home/runner/work/vue-query-builder/vue-query-builder/node_modules/@vuepress/plugin-back-to-top/lib/client/config.js'
+import clientConfig2 from '/home/runner/work/vue-query-builder/vue-query-builder/node_modules/@vuepress/plugin-external-link-icon/lib/client/config.js'
+import clientConfig3 from '/home/runner/work/vue-query-builder/vue-query-builder/node_modules/@vuepress/plugin-medium-zoom/lib/client/config.js'
+import clientConfig4 from '/home/runner/work/vue-query-builder/vue-query-builder/node_modules/@vuepress/plugin-nprogress/lib/client/config.js'
+import clientConfig5 from '/home/runner/work/vue-query-builder/vue-query-builder/node_modules/@vuepress/plugin-theme-data/lib/client/config.js'
+import clientConfig6 from '/home/runner/work/vue-query-builder/vue-query-builder/node_modules/@vuepress/theme-default/lib/client/config.js'
+import clientConfig7 from '/home/runner/work/vue-query-builder/vue-query-builder/docs/.vuepress/client.js'
 
 export const clientConfigs = [
   clientConfig0,
@@ -19,7 +16,4 @@ export const clientConfigs = [
   clientConfig5,
   clientConfig6,
   clientConfig7,
-  clientConfig8,
-  clientConfig9,
-  clientConfig10,
-].map((m) => m.default).filter(Boolean)
+]
