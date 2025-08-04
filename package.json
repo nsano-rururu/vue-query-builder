@@ -8,8 +8,7 @@
     "build:demo": "vite build --config vite.demo.config.js",
     "lint": "eslint src --ext .vue,.js,.ts --fix",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
-    "postinstall": "vue-demi-switch || true"
+    "docs:build": "vuepress build docs"
   },
   "dependencies": {
     "vue-demi": "^0.14.10"
