@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { defineComponent, isVue2 } from 'vue-demi';
+import { defineComponent } from 'vue';
 import QueryBuilderGroup from './components/QueryBuilderGroup.vue';
 import deepClone from './utilities.js';
 
@@ -152,10 +152,9 @@ export default defineComponent({
       deep: true
     });
 
-    // Handle Vue 2 and Vue 3 compatibility for initial value
-    const initialValue = this.modelValue || (isVue2 && this.$options.propsData?.value);
-    if (initialValue && Object.keys(initialValue).length > 0) {
-      this.query = Object.assign(this.query, initialValue);
+    // Initialize with modelValue if provided
+    if (this.modelValue && Object.keys(this.modelValue).length > 0) {
+      this.query = Object.assign(this.query, this.modelValue);
     }
   },
 

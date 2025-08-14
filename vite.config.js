@@ -17,12 +17,10 @@ export default defineConfig({
       fileName: (format) => `VueQueryBuilder.${format}.js`
     },
     rollupOptions: {
-      external: ['vue', 'vue-demi', '@vue/composition-api'],
+      external: ['vue'],
       output: {
         globals: {
-          vue: 'Vue',
-          'vue-demi': 'VueDemi',
-          '@vue/composition-api': 'VueCompositionAPI'
+          vue: 'Vue'
         }
       }
     }

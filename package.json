@@ -10,17 +10,8 @@
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
-  "dependencies": {
-    "vue-demi": "^0.14.10"
-  },
   "peerDependencies": {
-    "@vue/composition-api": "^1.0.0-rc.1",
-    "vue": "^2.0.0 || >=3.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@vue/composition-api": {
-      "optional": true
-    }
+    "vue": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",

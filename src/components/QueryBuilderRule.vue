@@ -158,7 +158,7 @@
 
 <script>
 import deepClone from '../utilities.js';
-import { defineComponent } from 'vue-demi';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: "QueryBuilderRule",
