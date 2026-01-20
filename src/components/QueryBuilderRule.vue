@@ -15,6 +15,7 @@
           <option
             v-for="(operand, index) in rule.operands"
             :key="index"
+            :value="operand"
           >
             {{ operand }}
           </option>
@@ -104,6 +105,7 @@
             <input
               :checked="localQuery.value === choice.value"
               type="radio"
+              :name="`radio-${rule.id}-${index}`"
               :value="choice.value"
               class="form-check-input"
               @change="updateRadioValue"
