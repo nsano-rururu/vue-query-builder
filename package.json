@@ -9,7 +9,7 @@
       "import": "./dist/VueQueryBuilder.es.js",
       "require": "./dist/VueQueryBuilder.umd.js"
     },
-    "./dist/style.css": "./dist/vue-query-builder.css"
+    "./dist/vue-query-builder.css": "./dist/vue-query-builder.css"
   },
   "scripts": {
     "serve": "vite --config vite.demo.config.js --host 0.0.0.0",

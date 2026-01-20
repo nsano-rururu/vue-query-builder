@@ -152,8 +152,14 @@ export default defineComponent({
     },
     modelValue: {
       handler(newValue) {
-        if (newValue && Object.keys(newValue).length > 0) {
+        if (newValue && typeof newValue === 'object' && Object.keys(newValue).length > 0) {
           this.query = deepClone(newValue);
+        } else if (newValue === null || newValue === undefined) {
+          // Reset to default state if modelValue is explicitly cleared
+          this.query = {
+            logicalOperator: "All",
+            children: []
+          };
         }
       },
       immediate: true
