@@ -143,19 +143,24 @@ export default defineComponent({
     }
   },
 
-  mounted () {
-    this.$watch(
-      'query',
-      newQuery => {
+  watch: {
+    query: {
+      handler(newQuery) {
         this.$emit('update:modelValue', deepClone(newQuery));
-      }, {
+      },
       deep: true
-    });
-
-    // Initialize with modelValue if provided
-    if (this.modelValue && Object.keys(this.modelValue).length > 0) {
-      this.query = Object.assign(this.query, this.modelValue);
+    },
+    modelValue: {
+      handler(newValue) {
+        if (newValue && Object.keys(newValue).length > 0) {
+          this.query = deepClone(newValue);
+        }
+      },
+      immediate: true
     }
+  },
+
+  mounted () {
   },
 
   methods: {

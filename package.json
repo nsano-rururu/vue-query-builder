@@ -2,7 +2,15 @@
   "name": "vue-query-builder",
   "version": "0.6.1",
   "type": "module",
-  "main": "./dist/VueQueryBuilder.common.js",
+  "main": "./dist/VueQueryBuilder.umd.js",
+  "module": "./dist/VueQueryBuilder.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/VueQueryBuilder.es.js",
+      "require": "./dist/VueQueryBuilder.umd.js"
+    },
+    "./dist/style.css": "./dist/vue-query-builder.css"
+  },
   "scripts": {
     "serve": "vite --config vite.demo.config.js --host 0.0.0.0",
     "build": "vite build",
