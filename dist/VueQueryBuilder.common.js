@@ -4471,7 +4471,7 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-;// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"247b7950-vue-loader-template"}!./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/cache-loader/dist/cjs.js??ruleSet[0].use[0]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/VueQueryBuilder.vue?vue&type=template&id=40b9281d&
+;// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"247b7950-vue-loader-template"}!./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/cache-loader/dist/cjs.js??ruleSet[0].use[0]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/VueQueryBuilder.vue?vue&type=template&id=54120f96&
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
@@ -4687,13 +4687,13 @@ var es_regexp_to_string = __webpack_require__(9714);
 var es_array_concat = __webpack_require__(2222);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
 var es_array_slice = __webpack_require__(7042);
-;// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"247b7950-vue-loader-template"}!./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/cache-loader/dist/cjs.js??ruleSet[0].use[0]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/components/QueryBuilderRule.vue?vue&type=template&id=13185188&
+;// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"247b7950-vue-loader-template"}!./node_modules/babel-loader/lib/index.js??clonedRuleSet-40.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/templateLoader.js??ruleSet[1].rules[3]!./node_modules/cache-loader/dist/cjs.js??ruleSet[0].use[0]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/components/QueryBuilderRule.vue?vue&type=template&id=7b4d5779&
 
 
 
 
 
-var QueryBuilderRulevue_type_template_id_13185188_render = function render() {
+var QueryBuilderRulevue_type_template_id_7b4d5779_render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c('div', {
@@ -4922,9 +4922,9 @@ var QueryBuilderRulevue_type_template_id_13185188_render = function render() {
     }
   })], 2)]);
 };
-var QueryBuilderRulevue_type_template_id_13185188_staticRenderFns = [];
+var QueryBuilderRulevue_type_template_id_7b4d5779_staticRenderFns = [];
 
-;// CONCATENATED MODULE: ./src/components/QueryBuilderRule.vue?vue&type=template&id=13185188&
+;// CONCATENATED MODULE: ./src/components/QueryBuilderRule.vue?vue&type=template&id=7b4d5779&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
 var es_symbol = __webpack_require__(2526);
@@ -4989,11 +4989,6 @@ var deepClone = function deepClone(obj) {
 /* harmony default export */ var QueryBuilderRulevue_type_script_lang_js_ = ({
   name: "query-builder-rule",
   props: ['query', 'index', 'rule', 'styled', 'labels'],
-  beforeMount: function beforeMount() {
-    if (this.rule.type === 'custom-component') {
-      this.$options.components[this.id] = this.rule.component;
-    }
-  },
   methods: {
     remove: function remove() {
       this.$emit('child-deletion-requested', this.index);
@@ -5155,8 +5150,8 @@ function normalizeComponent(
 ;
 var component = normalizeComponent(
   components_QueryBuilderRulevue_type_script_lang_js_,
-  QueryBuilderRulevue_type_template_id_13185188_render,
-  QueryBuilderRulevue_type_template_id_13185188_staticRenderFns,
+  QueryBuilderRulevue_type_template_id_7b4d5779_render,
+  QueryBuilderRulevue_type_template_id_7b4d5779_staticRenderFns,
   false,
   null,
   null,
@@ -5385,17 +5380,19 @@ var defaultLabels = {
     }, {
       deep: true
     });
-    if (typeof this.$options.propsData.value !== "undefined") {
-      this.query = Object.assign(this.query, this.$options.propsData.value);
-    }
+    this.$nextTick(function () {
+      if (typeof _this.$options.propsData.value !== "undefined") {
+        _this.query = Object.assign(_this.query, _this.$options.propsData.value);
+      }
+    });
   }
 });
 ;// CONCATENATED MODULE: ./src/VueQueryBuilder.vue?vue&type=script&lang=js&
  /* harmony default export */ var src_VueQueryBuildervue_type_script_lang_js_ = (VueQueryBuildervue_type_script_lang_js_); 
-;// CONCATENATED MODULE: ./node_modules/mini-css-extract-plugin/dist/loader.js??clonedRuleSet-12.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!./node_modules/cache-loader/dist/cjs.js??ruleSet[0].use[0]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/VueQueryBuilder.vue?vue&type=style&index=0&id=40b9281d&prod&lang=css&
+;// CONCATENATED MODULE: ./node_modules/mini-css-extract-plugin/dist/loader.js??clonedRuleSet-12.use[0]!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!./node_modules/@vue/vue-loader-v15/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!./node_modules/cache-loader/dist/cjs.js??ruleSet[0].use[0]!./node_modules/@vue/vue-loader-v15/lib/index.js??vue-loader-options!./src/VueQueryBuilder.vue?vue&type=style&index=0&id=54120f96&prod&lang=css&
 // extracted by mini-css-extract-plugin
 
-;// CONCATENATED MODULE: ./src/VueQueryBuilder.vue?vue&type=style&index=0&id=40b9281d&prod&lang=css&
+;// CONCATENATED MODULE: ./src/VueQueryBuilder.vue?vue&type=style&index=0&id=54120f96&prod&lang=css&
 
 ;// CONCATENATED MODULE: ./src/VueQueryBuilder.vue
 

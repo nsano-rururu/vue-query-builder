@@ -62,12 +62,6 @@ export default {
 
   props: ['query', 'index', 'rule', 'styled', 'labels'],
 
-  beforeMount () {
-    if (this.rule.type === 'custom-component') {
-      this.$options.components[this.id] = this.rule.component;
-    }
-  },
-
   methods: {
     remove: function() {
       this.$emit('child-deletion-requested', this.index);

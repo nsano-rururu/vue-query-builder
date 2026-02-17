@@ -139,9 +139,13 @@ export default {
       deep: true
     });
 
-    if ( typeof this.$options.propsData.value !== "undefined" ) {
-      this.query = Object.assign(this.query, this.$options.propsData.value);
-    }
+    this.$nextTick(
+      () => {
+        if ( typeof this.$options.propsData.value !== "undefined" ) {
+          this.query = Object.assign(this.query, this.$options.propsData.value);
+        }
+      }
+    )
   }
 }
 </script>
