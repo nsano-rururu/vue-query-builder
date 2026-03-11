@@ -1,1 +1,0 @@
-export const data = JSON.parse("{\"key\":\"v-baeb8cd4\",\"path\":\"/roadmap.html\",\"title\":\"Roadmap\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[],\"git\":{\"updatedTime\":1709567048000,\"contributors\":[{\"name\":\"nsano-rururu\",\"email\":\"nsano@ae.em-net.ne.jp\",\"commits\":1}]},\"filePathRelative\":\"roadmap.md\"}")
