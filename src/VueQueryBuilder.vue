@@ -4,7 +4,7 @@
     :class="{ 'vue-query-builder-styled': styled }"
   >
     <query-builder-group
-      v-model:query="query"
+      :query="query"
       :index="0"
       :rule-types="ruleTypes"
       :rules="mergedRules"
@@ -13,6 +13,7 @@
       :styled="styled"
       :labels="mergedLabels"
       type="query-builder-group"
+      @update:query="updateQuery"
     />
   </div>
 </template>
@@ -142,17 +143,35 @@ export default defineComponent({
     }
   },
 
-  mounted () {
-    this.$watch(
-      'query',
-      newQuery => {
+  watch: {
+    query: {
+      handler(newQuery) {
         this.$emit('update:modelValue', deepClone(newQuery));
-      }, {
+      },
       deep: true
-    });
+    },
+    modelValue: {
+      handler(newValue) {
+        if (newValue && typeof newValue === 'object' && Object.keys(newValue).length > 0) {
+          this.query = deepClone(newValue);
+        } else if (newValue === null || newValue === undefined) {
+          // Reset to default state if modelValue is explicitly cleared
+          this.query = {
+            logicalOperator: "All",
+            children: []
+          };
+        }
+      },
+      immediate: true
+    }
+  },
 
-    if ( typeof this.$options.propsData !== "undefined" ) {
-      this.query = Object.assign(this.query, this.$options.propsData.value);
+  mounted () {
+  },
+
+  methods: {
+    updateQuery(newQuery) {
+      this.query = newQuery;
     }
   }
 });

@@ -93,7 +93,7 @@
         :is="child.type"
         v-for="(child, index) in query.children"
         :key="index"
-        v-model:query="child.query"
+        :query="child.query"
         :type="child.type"
         :rule-types="ruleTypes"
         :rules="rules"
@@ -103,6 +103,7 @@
         :depth="depth + 1"
         :styled="styled"
         :labels="labels"
+        @update:query="updateChildQuery(index, $event)"
         @child-deletion-requested="removeChild"
       />
     </div>
@@ -141,6 +142,14 @@ export default defineComponent({
       classObject['depth-' + this.depth.toString()] = this.styled;
 
       return classObject;
+    }
+  },
+
+  watch: {
+    'query.logicalOperator' (newValue) {
+      let updated_query = deepClone(this.query);
+      updated_query.logicalOperator = newValue;
+      this.$emit('update:query', updated_query);
     }
   },
 
@@ -198,6 +207,12 @@ export default defineComponent({
     removeChild (index) {
       let updated_query = deepClone(this.query);
       updated_query.children.splice(index, 1);
+      this.$emit('update:query', updated_query);
+    },
+
+    updateChildQuery (index, newQuery) {
+      let updated_query = deepClone(this.query);
+      updated_query.children[index].query = newQuery;
       this.$emit('update:query', updated_query);
     }
   }

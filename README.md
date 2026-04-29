@@ -6,6 +6,12 @@ Vue Query Builder
 
 Vue Query Builder is a user interface that makes it easy for your users to create queries of any kind. It's useful if you need an interface for generating reports, filtering data, and more.
 
+## Installation
+
+```bash
+npm install vue-query-builder
+```
+
 
 [Demo and documentation](https://dabernathy89.github.io/vue-query-builder/)
 

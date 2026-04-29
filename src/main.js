@@ -39,11 +39,9 @@ let rules = [
   ];
 
 const app = createApp({
-  el: '#app',
-
   components: { VueQueryBuilder },
 
-  data: function() {
+  data() {
     return {
         rules: rules,
         output: {},
@@ -51,16 +49,17 @@ const app = createApp({
   },
 
   computed: {
-    outputFormatted: function() {
+    outputFormatted() {
       return JSON.stringify(this.output, null, 2);
     }
   },
 
   methods: {
-    updateQuery: function(value){
+    updateQuery(value){
       this.output = value;
     }
   },
 });
+
 app.config.compilerOptions.whitespace = 'preserve';
 app.mount('#app');

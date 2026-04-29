@@ -7,13 +7,15 @@
       <div class="col-auto">
         <select
           v-if="typeof rule.operands !== 'undefined'"
-          v-model="query.selectedOperand"
+          :value="localQuery.selectedOperand"
           :class="{ 'form-select me-2': styled }"
+          @change="updateSelectedOperand"
         >
           <!-- eslint-disable vue/no-template-shadow -->
           <option
             v-for="(operand, index) in rule.operands"
             :key="index"
+            :value="operand"
           >
             {{ operand }}
           </option>
@@ -23,8 +25,9 @@
       <div class="col-auto">
         <select
           v-if="! isMultipleChoice"
-          v-model="query.selectedOperator"
+          :value="localQuery.selectedOperator"
           :class="{ 'form-select me-2': styled }"
+          @change="updateSelectedOperator"
         >
           <!-- eslint-disable vue/no-template-shadow --> 
           <option
@@ -40,18 +43,20 @@
       <div class="col-auto">
         <input
           v-if="rule.inputType === 'text'"
-          v-model="query.value"
+          :value="localQuery.value"
           :class="{ 'form-control': styled }"
           type="text"
           :placeholder="labels.textInputPlaceholder"
+          @input="updateValue"
         >
       </div>
       <div class="col-auto">
         <input
           v-if="rule.inputType === 'number'"
-          v-model="query.value"
+          :value="localQuery.value"
           :class="{ 'form-control': styled }"
           type="number"
+          @input="updateValue"
         >
       </div>
       
@@ -59,8 +64,8 @@
         <div class="col-auto">
           <component
             :is="rule.component"
-            :model-value="query.value"
-            @update:model-value="updateQuery"
+            :model-value="localQuery.value"
+            @update:model-value="updateValue"
           />
         </div>
       </template>
@@ -76,10 +81,11 @@
             class="form-check form-check-inline"
           >
             <input
-              v-model="query.value"
+              :checked="localQuery.value && localQuery.value.includes(choice.value)"
               type="checkbox"
               :value="choice.value"
               class="form-check-input"
+              @change="updateCheckboxValue"
             > {{ choice.label }}
           </div>
         </div>
@@ -97,10 +103,12 @@
             class="form-check form-check-inline"
           >
             <input
-              v-model="query.value"
+              :checked="localQuery.value === choice.value"
               type="radio"
+              :name="`radio-${rule.id}-${index}`"
               :value="choice.value"
               class="form-check-input"
+              @change="updateRadioValue"
             > {{ choice.label }}
           </div>
         </div>
@@ -110,9 +118,10 @@
       <div class="col-auto">
         <select
           v-if="rule.inputType === 'select'"
-          v-model="query.value"
+          :value="localQuery.value"
           :class="{ 'form-select': styled }"
           :multiple="rule.type === 'multi-select'"
+          @change="updateSelectValue"
         >
           <template
             v-for="(option, index) in selectOptions"
@@ -167,6 +176,12 @@ export default defineComponent({
 
   emits: ['update:query', 'child-deletion-requested'],
 
+  data() {
+    return {
+      localQuery: deepClone(this.query)
+    };
+  },
+
   computed: {
     isMultipleChoice () {
       return ['radio', 'checkbox', 'select'].indexOf(this.rule.inputType) >= 0;
@@ -195,6 +210,15 @@ export default defineComponent({
     },
   },
 
+  watch: {
+    query: {
+      handler(newQuery) {
+        this.localQuery = deepClone(newQuery);
+      },
+      deep: true
+    }
+  },
+
   beforeMount () {
     if (this.rule.type === 'custom-component') {
       this.$options.components[this.id] = this.rule.component;
@@ -202,32 +226,77 @@ export default defineComponent({
   },
 
   mounted () {
-    let updated_query = deepClone(this.query);
-
     // Set a default value for these types if one isn't provided already
-    if(this.query.value === null){
+    if(this.localQuery.value === null){
       if (this.rule.inputType === 'checkbox') {
-          updated_query.value = [];
+          this.localQuery.value = [];
       }
       if (this.rule.type === 'select') {
-          updated_query.value = this.rule.choices[0].value;
+          this.localQuery.value = this.rule.choices[0].value;
       }
       if (this.rule.type === 'custom-component') {
-          updated_query.value = this.rule.default || null;
+          this.localQuery.value = this.rule.default || null;
       }
 
-      this.$emit('update:query', updated_query);
+      this.emitQuery();
     }
   },
 
   methods: {
+    emitQuery() {
+      this.$emit('update:query', deepClone(this.localQuery));
+    },
+    
+    updateSelectedOperand(event) {
+      this.localQuery.selectedOperand = event.target.value;
+      this.emitQuery();
+    },
+    
+    updateSelectedOperator(event) {
+      this.localQuery.selectedOperator = event.target.value;
+      this.emitQuery();
+    },
+    
+    updateValue(event) {
+      const value = typeof event === 'object' && event.target ? event.target.value : event;
+      this.localQuery.value = value;
+      this.emitQuery();
+    },
+    
+    updateCheckboxValue(event) {
+      const value = event.target.value;
+      const checked = event.target.checked;
+      
+      if (!Array.isArray(this.localQuery.value)) {
+        this.localQuery.value = [];
+      }
+      
+      if (checked) {
+        this.localQuery.value = [...this.localQuery.value, value];
+      } else {
+        this.localQuery.value = this.localQuery.value.filter(v => v !== value);
+      }
+      
+      this.emitQuery();
+    },
+    
+    updateRadioValue(event) {
+      this.localQuery.value = event.target.value;
+      this.emitQuery();
+    },
+    
+    updateSelectValue(event) {
+      const select = event.target;
+      if (select.multiple) {
+        this.localQuery.value = Array.from(select.selectedOptions).map(option => option.value);
+      } else {
+        this.localQuery.value = select.value;
+      }
+      this.emitQuery();
+    },
+    
     remove: function() {
       this.$emit('child-deletion-requested', this.index);
-    },
-    updateQuery(value) {
-      let updated_query = deepClone(this.query);
-      updated_query.value = value;
-      this.$emit('update:query', updated_query);
     },
   }
 });
